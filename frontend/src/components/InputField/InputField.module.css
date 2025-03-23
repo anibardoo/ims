@@ -1,0 +1,23 @@
+.inputField {
+    margin-bottom: 1rem;
+  }
+  
+  .inputField .form-label {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+  }
+  
+  .inputField .form-control {
+    width: 100%;
+  }
+  
+  .inputField small {
+    font-size: 0.875rem;
+    color: #6c757d;
+  }
+  
+  .inputField .icon {
+    margin-right: 10px;
+  }
+  
