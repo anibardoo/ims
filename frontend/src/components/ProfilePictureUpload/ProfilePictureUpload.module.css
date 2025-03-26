@@ -1,0 +1,45 @@
+.uploadContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .hiddenInput {
+    display: none;
+  }
+  
+  .uploadCircle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #455b72;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .uploadCircle:hover {
+    background-color: #1e4671;
+  }
+  
+  .uploadText {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .profileImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+  }
+  
