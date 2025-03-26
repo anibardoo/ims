@@ -5,11 +5,14 @@ import JWT from "jsonwebtoken";
 //register controller
 export const registerController = async (req, res) => {
   try {
-    const { username, email, password, phone, instituteName } = req.body;
+
+    const { username, email, password, phone, instituteName } = req.body.formData;
+    console.log(username);
+    console.log(phone);
     // const { image } = req.file;
     // const imageUrl = req.file.path;
     //validation
-    
+
     if (!email) {
       return res.send({ error: "email is required" });
     }
@@ -62,7 +65,7 @@ export const registerController = async (req, res) => {
     console.log(error);
     res.status(500).send({
       success: false,
-      message: "Eroor in registeration",
+      message: "Error in registeration",
       error,
     });
   }
@@ -74,19 +77,25 @@ export const loginController = async (req, res) => {
     const { email, password } = req.body;
     //validation
     if (!email || !password) {
-      return res.status(404).send({success:false, message: "invalid email and password " });
+      return res
+        .status(404)
+        .send({ success: false, message: "invalid email and password " });
     }
-   
+
     //check user
     const user = await userModel.findOne({ email });
     //existing user
     if (!user) {
-      return res.status(404).send({success:false, message: "email is not registerd" });
+      return res
+        .status(404)
+        .send({ success: false, message: "email is not registerd" });
     }
     //compare password
-    const isMatch = await comparePassword(password,user.password);
+    const isMatch = await comparePassword(password, user.password);
     if (!isMatch) {
-      return res.status(200).send({ success: false, message: "invalid password" });
+      return res
+        .status(200)
+        .send({ success: false, message: "invalid password" });
     }
     //generate token
     const token = JWT.sign({ id: user._id }, process.env.JWT_SECRET, {
@@ -95,15 +104,13 @@ export const loginController = async (req, res) => {
     res.status(200).send({
       success: true,
       message: "login successfully",
-      user:{
-        
+      user: {
         username: user.username,
         email: user.email,
         phone: user.phone,
         instituteName: user.instituteName,
-        
       },
-      token
+      token,
     });
   } catch (error) {
     console.log(error);
@@ -116,6 +123,6 @@ export const loginController = async (req, res) => {
 };
 
 //test controller
-export const testController =  (req, res) => {
+export const testController = (req, res) => {
   res.send("test controller");
 };

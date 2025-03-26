@@ -9,16 +9,17 @@ import { FaLock } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../context/useAuth";
 import validator from "validator";
+import axios from 'axios';
 import API from "../../api/API";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
     username: "",
     email: "",
-    mobile: "",
-    institute: "",
+    phone: "",
+    instituteName: "",
     password: "",
-    profilePicture: null,
+    // profilePicture: null,
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -63,15 +64,15 @@ const SignupPage = () => {
       isValid = false;
     }
 
-    if (validator.isEmpty(formData.mobile)) {
+    if (validator.isEmpty(formData.phone)) {
       toast.error("Mobile number is required");
       isValid = false;
-    } else if (!validator.isMobilePhone(formData.mobile, "en-IN")) {
+    } else if (!validator.isMobilePhone(formData.phone, "en-IN")) {
       toast.error("Please enter a valid Indian mobile number");
       isValid = false;
     }
 
-    if (validator.isEmpty(formData.institute)) {
+    if (validator.isEmpty(formData.instituteName)) {
       toast.error("Institute Name is required");
       isValid = false;
     }
@@ -105,7 +106,7 @@ const SignupPage = () => {
         const res = await fetch(API.REGISTER, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({formData}),
         });
 
         const data = await res.json();
@@ -115,9 +116,9 @@ const SignupPage = () => {
           setFormData({
             username: "",
             email: "",
-            mobile: "",
-            institute: "",
             password: "",
+            phone: "",
+            instituteName: "",
             profilePicture: null,
           });
           navigate("/");
@@ -170,19 +171,19 @@ const SignupPage = () => {
         />
         <InputField
           type="tel"
-          id="mobile"
-          name="mobile"
-          value={formData.mobile}
+          id="phone"
+          name="phone"
+          value={formData.phone}
           onChange={handleChange}
           icon="phone"
-          label="Mobile Number"
+          label="phone Number"
           helperText="Enter a 10-digit mobile number"
         />
         <InputField
           type="text"
-          id="institute"
-          name="institute"
-          value={formData.institute}
+          id="instituteName"
+          name="instituteName"
+          value={formData.instituteName}
           onChange={handleChange}
           icon="institute"
           label="Institute Name"
