@@ -1,7 +1,8 @@
 import React from 'react';
 import { 
   FaUser, FaEnvelope, FaPhone, FaLock, FaUniversity, FaPlus, FaTrash, FaEdit, FaList, 
-  FaUserGraduate, FaUserPlus, FaUserMinus, FaUserEdit, FaUsers 
+  FaUserGraduate, FaUserPlus, FaUserMinus, FaUserEdit, FaUsers, FaBook, FaChalkboardTeacher, 
+  FaCalendarAlt, FaBookOpen, FaGraduationCap, FaFileAlt
 } from 'react-icons/fa';
 
 const InputIcon = ({ icon, size }) => {
@@ -22,7 +23,15 @@ const InputIcon = ({ icon, size }) => {
     addUser: <FaUserPlus size={size} />,
     removeUser: <FaUserMinus size={size} />,
     updateUser: <FaUserEdit size={size} />,
-    users: <FaUsers size={size} />
+    users: <FaUsers size={size} />,
+    
+    // Additional icons for dashboard
+    book: <FaBook size={size} />,
+    teacher: <FaChalkboardTeacher size={size} />,
+    calendar: <FaCalendarAlt size={size} />,
+    course: <FaBookOpen size={size} />,
+    education: <FaGraduationCap size={size} />,
+    document: <FaFileAlt size={size} />
   };
 
   return iconsMap[icon] || null;

@@ -1,0 +1,11 @@
+.homePage {
+  min-height: 100vh;
+  padding: 20px 0;
+  background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+  .homePage {
+    padding: 10px 0;
+  }
+}
