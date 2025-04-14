@@ -5,8 +5,8 @@ import JWT from "jsonwebtoken";
 //register controller
 export const registerController = async (req, res) => {
   try {
-
-    const { username, email, password, phone, instituteName } = req.body.formData;
+    const { username, email, password, phone, instituteName } =
+      req.body.formData || {};
     console.log(username);
     console.log(phone);
     // const { image } = req.file;
@@ -94,7 +94,7 @@ export const loginController = async (req, res) => {
     const isMatch = await comparePassword(password, user.password);
     if (!isMatch) {
       return res
-        .status(200)
+        .status(401)
         .send({ success: false, message: "invalid password" });
     }
     //generate token

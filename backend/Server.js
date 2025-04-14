@@ -3,6 +3,10 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import ConnectDb from "./Config/db.js";
 import authRoutes from "./routes/authRoute.js";
+import studentRoutes from "./routes/studentRoute.js";
+import teacherRoutes from "./routes/teacherRoute.js";
+import courseRoutes from "./routes/courseRoute.js";
+import enrollRoutes from "./routes/enrollRoute.js";
 import cors from "cors";
 
 //config env
@@ -24,6 +28,10 @@ app.use(express.urlencoded({ extended: true }));
 
 //routes
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/student", studentRoutes);
+app.use("/api/v1/teacher", teacherRoutes);
+app.use("/api/v1/course", courseRoutes);
+app.use("/api/v1/enroll", enrollRoutes);
 
 const port = process.env.PORT || 3001;
 
